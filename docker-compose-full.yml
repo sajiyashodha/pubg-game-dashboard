@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: tournament-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: tournamentdb
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db-data:/var/lib/mysql
+
+  backend:
+    build: ./tournament-app-backend
+    image: tournament-app-backend:v1.0.0
+    container_name: tournament-backend
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+      - datapusher
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: rootpassword
+      DB_NAME: pubg
+
+  frontend:
+    build: ./tournament-app-frontend
+    image: tournament-app-frontend:v1.0.0
+    container_name: tournament-frontend
+    volumes:
+      - ./team_logos:/app/build/team_logos 
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+  datapusher:
+    build: ./game-data-pusher
+    image: game-data-pusher:v1.0.0
+    ports:
+      - "10086:10086"
+    volumes:
+      - ./log:/app/log    # Mount the local "log" directory to the container's "log" directory
+    environment:
+      - NODE_ENV=development
+    restart: always
+    depends_on:
+      - db
