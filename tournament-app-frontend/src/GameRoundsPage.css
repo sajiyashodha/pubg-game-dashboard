@@ -1,0 +1,103 @@
+/* GameRoundsPage.css */
+
+.game-rounds-page {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  input, select {
+    padding: 5px;
+    width: 150px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .status-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%; /* Make it a circle */
+  }
+  
+  .ended {
+    background-color: red;  /* Red for ended */
+  }
+  
+  .not-ended {
+    background-color: green; /* Green for not ended */
+  }
+  
+  /* Add this to your existing CSS (GameRoundsPage.css) */
+
+/* Small column for view standings icon */
+table th:nth-child(6),
+table td:nth-child(6) {
+width: 50px; /* Make the column narrow */
+text-align: center; /* Center the content */
+}
+
+.view-standings-icon {
+background: none;
+border: none;
+font-size: 16px;
+cursor: pointer;
+color: #007bff;
+}
+
+.view-standings-icon:hover {
+color: #0056b3;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Make sure it's above other content */
+}
+
+.loading-screen h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
